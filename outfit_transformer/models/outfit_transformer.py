@@ -212,7 +212,7 @@ class OutfitTransformer(nn.Module):
         return total_loss
     
     
-    def fit(
+    ddef fit(
             self,
             task: Literal['cp', 'cir'],
             save_dir: str,
@@ -237,6 +237,7 @@ class OutfitTransformer(nn.Module):
 
         best_criterion = -np.inf
         best_model = None
+        best_state = None
 
         for epoch in range(n_epochs):
             #--------------------------------------------------------------------------------------------#
