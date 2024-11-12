@@ -212,7 +212,7 @@ class OutfitTransformer(nn.Module):
         return total_loss
     
     
-    ddef fit(
+    def fit(
             self,
             task: Literal['cp', 'cir'],
             save_dir: str,
