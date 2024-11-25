@@ -93,7 +93,7 @@ if __name__ == '__main__':
                 device = device
                 )
             # print(f'TEST | Task: {args.test_task} | CP(AUC): {cp_score:.5f} | FITB(Acc): {fitb_score:.5f}')
-              print(f'TEST | Task: {args.task} | CP(AUC): {cp_score:.5f} | FITB(Acc): {fitb_score:.5f}')
+            print(f'TEST | Task: {args.task} | CP(AUC): {cp_score:.5f} | FITB(Acc): {fitb_score:.5f}')
 
         elif args.task=='cir':
             pass
