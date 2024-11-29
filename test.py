@@ -40,10 +40,12 @@ if __name__ == '__main__':
     # Setup
     device = torch.device(0) if torch.cuda.is_available() else torch.device(1)
 
-    HUGGING_FACE = 'sentence-transformers/paraphrase-albert-small-v2'
+    # HUGGING_FACE = 'sentence-transformers/paraphrase-albert-small-v2'
+    model_path = '/kaggle/input/cp_nondisjoint_train/pytorch/default/1/final.pth'
     model = OutfitTransformer(
         embedding_dim=args.embedding_dim,
-        txt_huggingface = HUGGING_FACE
+        # txt_huggingface = HUGGING_FACE
+        txt_huggingface = model_path
         )
     print('[COMPLETE] Build Model')
     if args.checkpoint != None:
