@@ -78,28 +78,28 @@ if __name__ == '__main__':
 
     if args.task == 'cp':
         train_dataset_args = DatasetArguments(
-            polyvore_split = 'nondisjoint',
+            polyvore_split = 'disjoint',
             task_type = 'cp',
             dataset_type = 'train',
             outfit_max_length=args.outfit_max_length,
             use_text=True
             )
         valid_dataset_args = DatasetArguments(
-            polyvore_split = 'nondisjoint',
+            polyvore_split = 'disjoint',
             task_type = 'cp',
             dataset_type = 'valid',
             outfit_max_length=args.outfit_max_length,
             use_text=True
             )
         valid_fitb_dataset_args = DatasetArguments(
-            polyvore_split = 'nondisjoint',
+            polyvore_split = 'disjoint',
             task_type = 'fitb',
             dataset_type = 'valid',
             outfit_max_length=12,
             use_text=True
             )
         valid_cp_dataset_args = DatasetArguments(
-            polyvore_split = 'nondisjoint',
+            polyvore_split = 'disjoint',
             task_type = 'cp',
             dataset_type = 'valid',
             outfit_max_length=12,
@@ -130,14 +130,14 @@ if __name__ == '__main__':
 
     elif args.task == 'cir':
         train_dataset_args = DatasetArguments(
-            polyvore_split = 'nondisjoint',
+            polyvore_split = 'disjoint',
             task_type = 'outfit',
             dataset_type = 'train',
             outfit_max_length=args.outfit_max_length,
             use_text=True
             )
         valid_dataset_args = DatasetArguments(
-            polyvore_split = 'nondisjoint',
+            polyvore_split = 'disjoint',
             task_type = 'outfit',
             dataset_type = 'valid',
             outfit_max_length=args.outfit_max_length,
