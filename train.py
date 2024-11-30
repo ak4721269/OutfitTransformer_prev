@@ -69,7 +69,7 @@ if __name__ == '__main__':
     print('[COMPLETE] Build Model')
     if args.checkpoint != None:
         checkpoint = torch.load(args.checkpoint)
-        model.load_state_dict(checkpoint['model_state_dict'], strict=False)
+        model.load_state_dict(checkpoint['state_dict'], strict=False)
         print(f'[COMPLETE] Load Model from {checkpoint}')
 
     optimizer = AdamW(model.parameters(), lr=args.learning_rate)
