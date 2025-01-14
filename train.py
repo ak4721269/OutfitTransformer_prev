@@ -60,7 +60,8 @@ if __name__ == '__main__':
 
     # Setup
     device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-    HUGGING_FACE = 'sentence-transformers/paraphrase-albert-small-v2'
+    # HUGGING_FACE = 'sentence-transformers/paraphrase-albert-small-v2'
+    HUGGING_FACE = 'stabilityai/stable-diffusion-3.5-large'
     tokenizer = AutoTokenizer.from_pretrained(HUGGING_FACE)
     model = OutfitTransformer(
         embedding_dim=args.embedding_dim,
