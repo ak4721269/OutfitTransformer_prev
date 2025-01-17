@@ -41,6 +41,8 @@ if __name__ == '__main__':
     parser.add_argument('--save_dir', help='Full save directory', type=str, default='F:\Projects\OutfitTransformer\outfit_transformer\checkpoints')
     parser.add_argument('--data_dir', help='Full dataset directory', type=str, default='F:\Projects\datasets\polyvore_outfits')
     parser.add_argument('--num_workers', type=int, default=0)
+    #New code
+    parser.add_argument('--hugging_face_api'. default=None)
 
     parser.add_argument('--scheduler_step_size', type=int, default=200)
     parser.add_argument('--learning_rate', type=float, default=5e-5)
