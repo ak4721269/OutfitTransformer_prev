@@ -11,7 +11,7 @@ from itertools import chain
 import torch
 from torch.optim import AdamW
 from torch.utils.data import DataLoader
-from diffusers import DiffusionPipeline
+#from diffusers import DiffusionPipeline
 
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
