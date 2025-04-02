@@ -428,7 +428,7 @@ from outfit_transformer.models.encoder.builder import *
 from outfit_transformer.loss.focal_loss import focal_loss
 from outfit_transformer.loss.bce_loss import bce_loss
 from outfit_transformer.loss.triplet_loss import triplet_loss
-from outfit_transformer.loss.asymmetric_focal_loss import asymmetric_focal_loss
+from outfit_transformer.loss.afocal_loss import afocal_loss
 
 
 class OutfitTransformer(nn.Module):
@@ -550,7 +550,7 @@ class OutfitTransformer(nn.Module):
             inputs = {key: value.to(device) for key, value in batch['inputs'].items()}
 
             logits = self.cp_forward(inputs, do_encode=True)
-            loss = asymmetric_loss(logits, targets.to(device))
+            loss = afocal_loss(logits, targets.to(device))
         elif task == 'cir':
             # Randomly extract the number of items to be used as query and answer.
             n_outfit_per_batch = torch.sum(~batch['outfits']['mask'], dim=1).numpy()
