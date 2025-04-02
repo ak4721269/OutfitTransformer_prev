@@ -1,0 +1,59 @@
+import torch
+import torch.nn.functional as F
+import torch.nn as nn
+
+def asymmetric_focal_loss(
+        y_prob: torch.Tensor,
+        y_true: torch.Tensor,
+        alpha: float = 0.75,
+        gamma_pos: float = 2.0,  # Focusing factor for positives
+        gamma_neg: float = 4.0,  # Focusing factor for negatives (hard negatives)
+        reduction: str = "mean",
+        ) -> torch.Tensor:
+    """
+    Asymmetric Focal Loss (AFL)
+    
+    - Applies different focusing factors for positive (gamma_pos) and negative (gamma_neg) samples.
+    - Improves classification in highly imbalanced datasets.
+    
+    Args:
+        y_prob (torch.Tensor): Model output logits (before sigmoid activation).
+        y_true (torch.Tensor): Ground-truth binary labels (0 or 1).
+        alpha (float, optional): Weighting factor for class imbalance (default: 0.75).
+        gamma_pos (float, optional): Focusing factor for positive class (default: 2.0).
+        gamma_neg (float, optional): Focusing factor for negative class (default: 4.0).
+        reduction (str, optional): Reduction method - 'none', 'mean', or 'sum' (default: 'mean').
+    
+    Returns:
+        torch.Tensor: Computed loss.
+    """
+    
+    # Convert logits to probabilities
+    y_prob = torch.sigmoid(y_prob)  # Convert raw logits to probability
+
+    # Binary Cross Entropy Loss (without reduction)
+    ce_loss = F.binary_cross_entropy(y_prob, y_true, reduction="none")
+    
+    # Compute p_t (probability assigned to the true class)
+    p_t = y_true * y_prob + (1 - y_true) * (1 - y_prob)
+    
+    # Apply asymmetric focusing
+    gamma_t = gamma_pos * y_true + gamma_neg * (1 - y_true)  # Different gamma for pos & neg
+    loss = ce_loss * ((1 - p_t) ** gamma_t)
+
+    # Apply class weighting (alpha)
+    if alpha >= 0:
+        alpha_t = alpha * y_true + (1 - alpha) * (1 - y_true)
+        loss = alpha_t * loss
+
+    # Reduction strategy
+    if reduction == "none":
+        pass
+    elif reduction == "mean":
+        loss = loss.mean()
+    elif reduction == "sum":
+        loss = loss.sum()
+    else:
+        raise ValueError(f"Invalid Value for arg 'reduction': '{reduction}'\n Supported modes: 'none', 'mean', 'sum'")
+    
+    return loss
