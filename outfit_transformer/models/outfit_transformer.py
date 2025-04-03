@@ -550,7 +550,7 @@ class OutfitTransformer(nn.Module):
             inputs = {key: value.to(device) for key, value in batch['inputs'].items()}
 
             logits = self.cp_forward(inputs, do_encode=True)
-            loss = afocal_loss(logits, targets.to(device))
+            loss = focal_loss(logits, targets.to(device))
         elif task == 'cir':
             # Randomly extract the number of items to be used as query and answer.
             n_outfit_per_batch = torch.sum(~batch['outfits']['mask'], dim=1).numpy()
