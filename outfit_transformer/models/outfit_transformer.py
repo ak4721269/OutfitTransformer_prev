@@ -428,7 +428,7 @@ from outfit_transformer.models.encoder.builder import *
 from outfit_transformer.loss.focal_loss import focal_loss
 from outfit_transformer.loss.bce_loss import bce_loss
 from outfit_transformer.loss.triplet_loss import triplet_loss
-from outfit_transformer.loss.afocal_loss import afocal_loss
+# from outfit_transformer.loss.afocal_loss import afocal_loss
 
 
 class OutfitTransformer(nn.Module):
