@@ -28,8 +28,8 @@ from outfit_transformer.datasets.processor import *
 
 @dataclass
 class DatasetArguments:
-    # polyvore_split: str = 'nondisjoint'
-    polyvore_split: str = 'disjoint'
+    polyvore_split: str = 'nondisjoint'
+    # polyvore_split: str = 'disjoint'
     task_type: str = 'cp'
     dataset_type: str = 'train'
     outfit_max_length: int = 6
